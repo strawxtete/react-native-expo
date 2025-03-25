@@ -1,123 +1,129 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, ScrollView, Button, TextInput, View } from 'react-native';
 import Header from './src/components/Header';
-import { useState, useEffect, use } from 'react';
-import CardUser from './src/components/CardUser';
+import { useState, useEffect} from 'react';
+import Produto from './src/components/Produto';
 
 export default function App() {
 
-  const [users, setUsers] = useState([])
+  const [products, setProducts] = useState([])
 
   const [name, setName] = useState('')
-  const [email, setEmail] = useState('')
-  const [pass, setPass] = useState('')
-  const [avatar, setAvatar] = useState('')
+  const [description, setDescription] = useState('')
+  const [price, setPrice] = useState('')
+  const [image, setImage] = useState('')
 
-  const [userToEdit, setUserToEdit] = useState(null)
+  const [productToEdit, setProductToEdit] = useState(null)
 
   useEffect(() => {
-    const fetchUsers = async () => {
-      const result = await fetch('http://localhost:3000/user/list')
+    const fetchProduct = async () => {
+      const result = await fetch('http://localhost:3000/product/list')
       const data = await result.json()
       console.log(data)
-      setUsers(data)
+      setProducts(data)
     }
-    fetchUsers()
+    fetchProduct()
   }, [])
 
-  //muda o usuário a ser editado
   useEffect(() => {
-    console.log('userToEdit', userToEdit)
-    if(userToEdit !== null) {
-      const user = users.find((user) => user.id === userToEdit)  
-      setName(user.name)
-      setEmail(user.email)
-      setPass(user.pass)
-      setAvatar(user.avatar)
+    console.log('productToEdit', productToEdit)
+    if(productToEdit !== null) {
+      const product = products.find((product) => product.id === productToEdit)  
+      setName(product.name)
+      setDescription(product.description)
+      setPrice(product.price)
+      setImage(product.image)
     }
-  }, [userToEdit])
+  }, [productToEdit])
 
-  const handleCreateUser = async () => {
-    const result = await fetch('http://localhost:3000/user', {
+  const handleCreateProduct = async () => {
+    const result = await fetch('http://localhost:3000/product', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
         name,
-        email,
-        pass,
-        avatar
+        description,
+        price,
+        image
       })
     })
 
     const data = await result.json()
     console.log(data)
-    setUsers([...users, data.user]) // Adiciona o novo usuário no final da lista
+    setProducts([...products, data.product]) 
     setName('')
-    setEmail('')
-    setPass('')
-    setAvatar('')
+    setDescription('')
+    setPrice('')
+    setImage('')
   }
 
-  const handleEditUser = async () => {
-    const result = await fetch(`http://localhost:3000/user/${userToEdit}`, {
+  const handleEditProduct = async () => {
+    const result = await fetch(`http://localhost:3000/product/${productToEdit}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
         name,
-        email,
-        pass,
-        avatar
+        description,
+        price,
+        image
       })
     })
     const data = await result.json()
     console.log(data)
-    const usersEdited = users.map((user) => {
-      if(user.id === userToEdit) {
-        return data.user
+    const productsEdited = products.map((product) => {
+      if(product.id === productToEdit) {
+        return data.product
       }
-      return user
+      return product
     })
-    setUsers(usersEdited)
+    setProducts(productsEdited)
+    setProductToEdit(null)
     setName('')
-    setEmail('')
-    setPass('')
-    setAvatar('')
+    setDescription('')
+    setPrice('')
+    setImage('')
   }
 
   return (
     <ScrollView style={styles.container}>
       <Header />
-      <View style={styles.listUser}>
+      <View style={styles.vitrine}>
         {
-         users.map((user)=>{
-            return <CardUser
-              key={user.id}
-              id={user.id} 
-              name={user.name}
-              email={user.email}
-              avatar={user.avatar}
-              users={users}
-              setUsers={setUsers}
-              setUserToEdit={setUserToEdit}
+         products.map((product)=>{
+            return <Produto
+              key={product.id}
+              id={product.id} 
+              name={product.name}
+              description={product.description}
+              price={product.price}
+              image={product.image}
+              products={products}
+              setProducts={setProducts}
+              setProductToEdit={setProductToEdit}
             />
          })
         }
       </View>
+
       <View>
-        <Text style={styles.h1}>Cadastrar</Text>
+        <Text style={styles.h1}>Criar ou Editar</Text>
+
         <TextInput style={styles.input} placeholder="Nome" value={name} onChangeText={setName} />
-        <TextInput style={styles.input} placeholder="Email" value={email} onChangeText={setEmail} /> 
-        <TextInput style={styles.input} placeholder="Senha" value={pass} onChangeText={setPass} /> 
-        <TextInput style={styles.input} placeholder="Avatar" value={avatar} onChangeText={setAvatar} />
+        <TextInput style={styles.input} placeholder="Descrição" value={description} onChangeText={setDescription} /> 
+        <TextInput style={styles.input} placeholder="Preço" value={price} onChangeText={setPrice} /> 
+        <TextInput style={styles.input} placeholder="Imagem" value={image} onChangeText={setImage} />
+
         <View style={styles.boxButtons}>
-            <Button title="Cadastrar" onPress={handleCreateUser} />
-            <Button title="Editar" onPress={handleEditUser} />    
+            <Button title="Cadastrar" onPress={handleCreateProduct} />
+            <Button title="Editar" onPress={handleEditProduct} />    
         </View>
       </View> 
+            
+            <StatusBar style="auto" />
     </ScrollView>
   );
 }
@@ -125,7 +131,23 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#DDDDDD',
+    backgroundColor: '#EAE5E1',
+  },
+  vitrine: {
+    display: "flex",
+    flexWrap: "wrap",
+    justifyContent: "center",
+    alignItems: "center",
+    flexDirection: 'row',
+    gap: 15,
+    marginTop: "5%",
+    backgroundColor: '#EAE5E1',
+  },
+  products: {
+    flexDirection: 'row',
+    gap: 20,
+    padding: 20,
+    flexWrap: 'wrap'
   },
   input: {
     borderWidth: 1,
@@ -134,20 +156,16 @@ const styles = StyleSheet.create({
     padding: 10,
     margin: 10
   },
-  listUser: {
-    gap: 20,
-    marginVertical: 20,
-    alignItems: 'center', 
-  },
   h1: {
     fontSize: 20,
     fontWeight: 'bold',
-    margin: 10
+    margin: 10,
+    color: '#3F0D09'
   },
   boxButtons: {
     flexDirection: 'row',
     gap: 20,
     justifyContent: 'space-around',
     marginBottom: 40
-  }
+  },
 });

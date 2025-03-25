@@ -5,11 +5,11 @@ export default function Produto(props){
     return (
         <View style={styles.container}>
             <Image style={styles.imagem}
-                source={props.imagem}
+                source={props.image}
             />
 
-            <Text style={styles.nome}>{props.nome}</Text>
-            <Text style={styles.preco}>{props.preco}</Text>
+            <Text style={styles.nome}>{props.name}</Text>
+            <Text style={styles.preco}>R$ {props.price}</Text>
         </View>
     ) 
 }
@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
         alignItems: "center",
     },
     imagem: {
-        width: 140,
+        width: "100%",
         height: 200,
         marginBottom: 10,
     },

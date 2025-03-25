@@ -28,10 +28,10 @@ export default function CardUser({id, avatar, name, email, users, setUsers, setU
                 <Text style={styles.email}>{email}</Text>
             </View>
             <Pressable style={styles.trash} onPress={deleteUser}>
-                <FontAwesome name="trash-o" size={24} color="black" />
+                <FontAwesome name="trash-o" size={24} color="#3F0D09" />
             </Pressable>
             <Pressable style={styles.edit} onPress={editUser}>
-                <FontAwesome name="edit" size={24} color="black" />
+                <FontAwesome name="edit" size={24} color="#3F0D09" />
             </Pressable>
         </View>
     )

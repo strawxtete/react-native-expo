@@ -1,8 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, View, ScrollView, Text } from 'react-native';
 import Header from './src/components/Header';
-import Message from './src/components/Message';
-import Produto from './src/components/Produto';
 import CardUser from './src/components/CardUser';
 import { useState, useEffect } from 'react';
 

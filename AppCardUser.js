@@ -119,6 +119,7 @@ export default function App() {
             <Button style={styles.editar} title="Editar" onPress={handleEditUser} />    
         </View>
       </View> 
+      <StatusBar style="auto" />
     </ScrollView>
   );
 }

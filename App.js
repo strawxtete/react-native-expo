@@ -154,7 +154,8 @@ const styles = StyleSheet.create({
     borderColor: '#CCC',
     backgroundColor: '#FFF',
     padding: 10,
-    margin: 10
+    margin: 10,
+    borderRadius: 5,
   },
   h1: {
     fontSize: 20,

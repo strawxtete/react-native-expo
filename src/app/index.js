@@ -1,10 +1,11 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, ScrollView, Button, TextInput, View } from 'react-native';
-import Header from './src/components/Header';
+import Header from '../components/Header';
 import { useState, useEffect} from 'react';
-import Produto from './src/components/Produto';
+import Produto from '../components/Produto';
+import { Link } from 'expo-router';
 
-export default function App() {
+export default function HomeScreen() {
 
   const [products, setProducts] = useState([])
 
@@ -109,8 +110,9 @@ export default function App() {
         }
       </View>
 
+      <Link href='/create'><Text style={styles.link}>Adicionar Produto</Text></Link>
+
       <View>
-        <Text style={styles.h1}>Criar ou Editar</Text>
 
         <TextInput style={styles.input} placeholder="Nome" value={name} onChangeText={setName} />
         <TextInput style={styles.input} placeholder="Descrição" value={description} onChangeText={setDescription} /> 
@@ -142,12 +144,13 @@ const styles = StyleSheet.create({
     gap: 15,
     marginTop: "5%",
     backgroundColor: '#EAE5E1',
+    marginBottom: 40,
   },
   products: {
     flexDirection: 'row',
     gap: 20,
     padding: 20,
-    flexWrap: 'wrap'
+    flexWrap: 'wrap',
   },
   input: {
     borderWidth: 1,
@@ -156,17 +159,20 @@ const styles = StyleSheet.create({
     padding: 10,
     margin: 10,
     borderRadius: 5,
+    marginTop: 20,
   },
-  h1: {
-    fontSize: 20,
+  link: {
+    fontSize: 18,
     fontWeight: 'bold',
     margin: 10,
-    color: '#3F0D09'
+    backgroundColor: '#3F0D09',
+    color: '#EAE5E1',
+    padding: 10,
   },
   boxButtons: {
     flexDirection: 'row',
     gap: 20,
     justifyContent: 'space-around',
-    marginBottom: 40
+    marginBottom: 40,
   },
 });

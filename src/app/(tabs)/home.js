@@ -1,24 +1,25 @@
-import { View, Text , StyleSheet, TextInput, Button, ScrollView } from 'react-native'
+import {View, Text, StyleSheet} from 'react-native'
 
 export default function HomeScreen() {
-    return (
-        <View style={styles.container}>
-            <Text style={styles.title}>Home</Text>
-        </View>
-    )
+    
+  return (
+    <View style={styles.container}>
+        <Text style={styles.title}>Home</Text>
+    </View>
+  )
 }
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
+        backgroundColor: '#F5FCFF',
+        marginTop: 20,
         justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: '#EAE5E1',
-        gap: 20,        
+        alignItems: 'center'
     },
     title: {
         fontSize: 20,
         fontWeight: 'bold',
-        color: '#3F0D09',
+        margin: 10
     },
 })

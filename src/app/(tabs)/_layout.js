@@ -1,25 +1,35 @@
 import { Tabs } from 'expo-router';
-import Ionicons from '@expo/vector-icons/Ionicons';
+import Entypo from '@expo/vector-icons/Entypo';
 import FontAwesome5 from '@expo/vector-icons/FontAwesome5';
 
-export default function HootLayout() {
+export default function RootLayout() {
   return (
-    <Tabs screenOptions={{headerShown: false, tabBarActiveTintColor: '#3F0D09'}}>
-      
-        <Tabs.Screen name="index" options={{
-                      title: "Home",
-                      tabBarIcon: ({ color }) => <Ionicons name="home-sharp" size={24} color={color} /> 
-                      }}/>
-
-        <Tabs.Screen name="contact" options={{
-                      title: "Contact",
-                      tabBarIcon: ({ color }) => <FontAwesome5 name="phone" size={24} color={ color } /> 
-                      }}/>
-
-        <Tabs.Screen name="profile" options={{
-                    title: "Profile",
-                    tabBarIcon: ({ color }) => <FontAwesome5 name="user-cicle" size={24} color={ color } />
-                    }}/>
+    <Tabs screenOptions={{
+          headerShown: false,
+          tabBarActiveTintColor: '#b15300'
+        }}
+    >
+      <Tabs.Screen 
+        name="home"
+        options={{
+          title: "Home",
+          tabBarIcon: ({ color }) => <Entypo name="home" size={24} color={color} />
+        }}
+      />
+      <Tabs.Screen 
+        name="contact"
+        options={{
+            title: "Contatos",
+            tabBarIcon: ({color}) => <FontAwesome5 name="user-alt" size={24} color={color} />
+        }}
+      />
+      <Tabs.Screen
+        name="profile"
+        options={{
+          title: "Perfil",
+          tabBarIcon: ({color}) => <FontAwesome5 name="user-circle" size={24} color={color} />
+        }}
+      />
     </Tabs>
   );
 }

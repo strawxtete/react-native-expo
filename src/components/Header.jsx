@@ -1,40 +1,37 @@
 import {View, StyleSheet, Text} from 'react-native'
 import { Image } from 'expo-image'
-import Ionicons from '@expo/vector-icons/Ionicons';
+import Entypo from '@expo/vector-icons/Entypo';
 
 export default function Header(){
     return (
         <View style={styles.container}>
             <Image
                 style={styles.avatar}
-                source={"https://cdn.dooca.store/9528/files/banners-poente-por-brazilian-girlie-1-18.jpg?v=1740676891&webp=0"}
+                source={'https://github.com/renancavichi.png'}
             />
-            <Text style={styles.nome}>Sthefany Santiago</Text>
-            <Ionicons style={styles.menu} name="menu-outline" size={24} color="#3F0D09" />
+            <Text style={styles.nome}>Renan Cavichi</Text>
+            <Entypo style={styles.menu} name="menu" size={44} color="black" />
         </View>
-    ) 
+    )
 }
 
 const styles = StyleSheet.create({
     container: {
-        height: 60,
+        height: 100,
         width: '100%',
-        backgroundColor: '#EAE5E1',
+        backgroundColor: '#EEEEEE',
         padding: 16,
         flexDirection: 'row',
         alignItems: 'center',
-        gap: 16,
-        borderBottomColor: "#3F0D09",
-        borderBottomWidth: 1
+        gap: 16
     },
     avatar: {
-        width: 40,
-        height: 40,
+        width: 70,
+        height: 70,
         borderRadius: 35
     },
     nome: {
-        fontSize: 16,
-        color: "#3F0D09"       
+        fontSize: 26
     },
     menu: {
         marginLeft: 'auto'

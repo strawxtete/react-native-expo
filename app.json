@@ -3,7 +3,7 @@
     "name": "tutorial-react-native-expo",
     "slug": "tutorial-react-native-expo",
     "version": "1.0.0",
-    "scheme": "your-app-scheme",
+    "schema": "tutorial-react-native-expo",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",

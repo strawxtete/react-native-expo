@@ -1,17 +1,17 @@
-import {View, StyleSheet, Text} from 'react-native'
 import { Image } from 'expo-image'
+import {View, Text, StyleSheet} from 'react-native'
 
-export default function Produto(props){
+export default function Product({foto, titulo, preco}) {
     return (
         <View style={styles.container}>
-            <Image style={styles.imagem}
-                source={props.image}
+            <Image 
+                style={styles.foto}
+                source={foto}
             />
-
-            <Text style={styles.nome}>{props.name}</Text>
-            <Text style={styles.preco}>R$ {props.price}</Text>
+            <Text style={styles.titulo}>{titulo}</Text>
+            <Text style={styles.preco}>{preco}</Text>
         </View>
-    ) 
+    )
 }
 
 const styles = StyleSheet.create({
@@ -24,12 +24,12 @@ const styles = StyleSheet.create({
         height: 280,
         alignItems: "center",
     },
-    imagem: {
+    foto: {
         width: "100%",
         height: 200,
         marginBottom: 10,
     },
-    nome: {
+    titulo: {
         color: "#3F0D09",
         textTransform: "uppercase",
         fontSize: 10,
